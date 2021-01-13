@@ -1,0 +1,79 @@
+{
+  "name": "project_node",
+  "runtime": "nodejs10.x",
+  "version": "1.0.0",
+  "description": "Project TA",
+  "main": "handler.js",
+  "customName": false,
+  "customRole": false,
+  "timeout": 6,
+  "memorySize": 1024,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": []
+  },
+  "endpoints": [
+    {
+      "path": "tickets",
+      "method": "POST",
+      "type": "AWS",
+      "authorizationType": "CUSTOM",
+      "authorizerFunction": "secure",
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": {
+        "application/json": ""
+      },
+      "responses": {
+        "400": {
+          "statusCode": "400"
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": {},
+          "responseModels": {
+            "application/json;charset=UTF-8": "Empty"
+          },
+          "responseTemplates": {
+            "application/json;charset=UTF-8": ""
+          }
+        }
+      }
+    }
+  ],
+  "events": [],
+  "environment": {
+    "SERVERLESS_PROJECT": "${auth-token}",
+    "SERVERLESS_STAGE": "${dev}",
+    "SERVERLESS_REGION": "${us-east-1}"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"sls offline start --skipCacheInvalidation"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.4.0",
+    "bcryptjs": "^2.4.3",
+    "bcryptjs-then": "^1.0.1",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.8",
+    "twilio": "^3.51.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^6.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shidiqmft/project_node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shidiqmft/project_node/issues"
+  },
+  "homepage": "https://github.com/shidiqmft/project_node#readme"
+}
