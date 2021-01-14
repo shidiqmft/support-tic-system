@@ -27,7 +27,7 @@
 
             <v-img height="200" src="@/views/Image/view.jpg">
               <v-row>
-                <v-col class="text-right" cols="12">
+                <!-- <v-col class="text-right" cols="12">
                   <v-menu bottom left transition="slide-y-transition">
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn icon v-bind="attrs" v-on="on">
@@ -45,7 +45,7 @@
                       </v-list-item>
                     </v-list>
                   </v-menu>
-                </v-col>
+                </v-col> -->
                 <v-row class="pa-4" align="center" justify="center">
                   <v-col class="text-center">
                     <h3 class="headline">New Ticket</h3>
@@ -84,7 +84,7 @@
                       label="Name"
                     ></v-text-field>
                   </v-col>
-                  <v-toolbar dense>
+                  <!-- <v-toolbar dense>
                     <v-overflow-btn
                       :items="dropdown_font"
                       label="Select font"
@@ -106,9 +106,9 @@
 
                       <v-divider vertical></v-divider>
 
-                      <v-spacer></v-spacer>
+                      <v-spacer></v-spacer> -->
 
-                      <v-btn-toggle
+                      <!-- <v-btn-toggle
                         v-model="toggle_multiple"
                         color="primary"
                         dense
@@ -157,7 +157,7 @@
                         </v-btn>
                       </v-btn-toggle>
                     </template>
-                  </v-toolbar>
+                  </v-toolbar> -->
 
                   <v-col cols="12">
                     <v-textarea
@@ -385,17 +385,16 @@
 
             <v-divider></v-divider>
             <v-card-actions>
-              <v-switch
+              <!-- <v-switch
                 v-model="autoUpdate"
                 :disabled="isUpdating"
                 class="mt-0"
                 color="green lighten-2"
                 hide-details
                 label="Auto Update"
-              ></v-switch>
+              ></v-switch> -->
               <v-spacer></v-spacer>
               <v-btn
-                :disabled="!autoUpdate"
                 :loading="isUpdating"
                 color="blue-grey darken-3"
                 depressed
@@ -413,13 +412,13 @@
       <v-icon small class="mr-2" @click="editItem(item)">
         mdi-content-save-edit-outline
       </v-icon>
-      <v-icon small @click="deleteItem(item)">
+      <!-- <v-icon small @click="deleteItem(item)">
         mdi-delete
-      </v-icon>
+      </v-icon> -->
     </template>
-    <template v-slot:no-data>
+    <!-- <template v-slot:no-data>
       <v-btn color="primary" @click="initialize">Reset</v-btn>
-    </template>
+    </template> -->
 
     <v-dialog v-model="dialog" max-width="500px">
       <template v-slot:activator="{ on }" v-if="buttons">
@@ -531,43 +530,11 @@ import utils from "../../.../../../helpers/utils";
 export default {
   name: "Tickets",
   data() {
-    const srcs = {
-      1: "@/views/Image/profile.png",
-      2: "@/views/Image/kuning.jpg",
-      3: "@/views/Image/orange.png",
-      4: "@/views/Image/biru.png",
-    };
     return {
-      autoUpdate: false,
-      isUpdating: false,
-      prioritychoice: [
-        { header: "Priority" },
-        { choice: "High", group: "Priority", avatar: srcs[1] },
-        { choice: "Low", group: "Priority", avatar: srcs[2] },
-      ],
-      prioritychoice2: ["High", "Low"],
-      divisionchoice: [
-        { header: "Division" },
-        { choice: "Frontend", group: "Division", avatar: srcs[3] },
-        { choice: "Backend", group: "Division", avatar: srcs[4] },
-      ],
-      divisionchoice2: ["Frontend", "Backend"],
-      dropdown_font: [
-        { text: "Arial" },
-        { text: "Calibri" },
-        { text: "Courier" },
-        { text: "Verdana" },
-      ],
-      dropdown_edit: [
-        { text: "100%" },
-        { text: "75%" },
-        { text: "50%" },
-        { text: "25%" },
-        { text: "0%" },
-      ],
-      toggle_exclusive: 2,
-      toggle_multiple: [1, 2, 3],
 
+      isUpdating: false,
+      prioritychoice2: ["High", "Low"],
+      divisionchoice2: ["Frontend", "Backend"],
       form: {
         number: "",
         name: "",
@@ -583,7 +550,7 @@ export default {
       nameRules: [(v) => !!v || "Name is required"],
       descriptionRules: [
         (v) => !!v || "Description is required",
-        (v) => v.length <= 30 || "Max 30 characters",
+        (v) => v.length <= 100 || "Max 100 characters",
       ],
       priorityRules: [(v) => !!v || "Priority is required"],
       divisionRules: [(v) => !!v || "Divison is required"],
@@ -715,17 +682,17 @@ export default {
       this.dialog = true;
     },
 
-    deleteItem(item) {
-      const index = this.tickets.indexOf(item);
-      confirm("Are you sure you want to delete this item?") &&
-        this.tickets.splice(index, 1);
-      // this.$store.commit("deleteItem", index);
-      updateTicket(item._id, { is_deleted: true }).then(() => {
-        this.getData();
-      });
+    // deleteItem(item) {
+    //   const index = this.tickets.indexOf(item);
+    //   confirm("Are you sure you want to delete this item?") &&
+    //     this.tickets.splice(index, 1);
+    //   // this.$store.commit("deleteItem", index);
+    //   updateTicket(item._id, { is_deleted: true }).then(() => {
+    //     this.getData();
+    //   });
 
-      // Todo: Make this delete item from store
-    },
+    //   // Todo: Make this delete item from store
+    // },
 
     close() {
       this.dialog = false;

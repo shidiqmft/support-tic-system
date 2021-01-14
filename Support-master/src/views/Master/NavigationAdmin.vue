@@ -7,13 +7,13 @@
     >
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <span class="title ml-3 mr-5">Admin&nbsp;<span class="font-weight-light">Dashboard</span></span>
-      <v-text-field
+      <!-- <v-text-field
         solo-inverted
         flat
         hide-details
         label="Search"
         prepend-inner-icon="mdi-account-search"
-      ></v-text-field>
+      ></v-text-field> -->
 
       <v-spacer></v-spacer>
       <v-btn icon
@@ -74,10 +74,10 @@
             </v-list-item-avatar>
 
             <v-list-item-content>
-              <v-list-item-title>User</v-list-item-title>
+              <v-list-item-title>Admin</v-list-item-title>
               <!-- <v-list-item-subtitle>Mahasiwa</v-list-item-subtitle> -->
             </v-list-item-content>
-
+<!-- 
             <v-list-item-action>
               <v-btn
                 :class="fav ? 'red--text' : ''"
@@ -86,7 +86,7 @@
               >
                 <v-icon>mdi-heart</v-icon>
               </v-btn>
-            </v-list-item-action>
+            </v-list-item-action> -->
 
             <template>
             <v-btn 

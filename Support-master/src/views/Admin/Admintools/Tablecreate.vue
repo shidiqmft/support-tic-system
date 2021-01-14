@@ -14,11 +14,18 @@
           >
         </v-card>
       </v-col>
-      <v-data-table :headers="headers" :items="items" class="elevation-1">
+      <v-data-table :headers="headers" :items="items" :search="search" class="elevation-1">
         <template v-slot:top>
           <v-toolbar flat dark>
             <v-toolbar-title>View Ticket</v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
+                  <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
             <v-spacer></v-spacer>
             <v-dialog v-model="dialog" max-width="500px">
               <template v-slot:activator="{ on }" v-if="buttons">
@@ -162,6 +169,7 @@ export default {
     },
   },
   data: () => ({
+    search: "",
     dialog: false,
     editedIndex: -1,
     editedItem: {
@@ -198,24 +206,6 @@ export default {
       { text: "date", value: "date" },
     ],
     items: [
-      {
-        value: "false",
-        code: 23,
-        name: "dsvdf",
-        description: "Le Manns",
-        division: "Low",
-        priority: "Backend",
-        date: "21-10-2020",
-      },
-      {
-        value: "false",
-        code: 1,
-        name: "ddd",
-        description: "Le Manns",
-        division: "High",
-        priority: "Frontend",
-        date: "23-11-2020",
-      },
     ],
   }),
   computed: {

@@ -101,7 +101,7 @@
             <v-card color="white">
               <v-layout row justify-space-between class="ma-0">
                 <v-flex xs2>
-                  <v-icon size="120" :color="item.color">{{
+                  <v-icon size="95" :color="item.color">{{
                     item.icon
                   }}</v-icon>
                 </v-flex>
@@ -110,7 +110,7 @@
                     :style="{
                       color: item.color,
                       fontWeight: 'bold',
-                      fontSize: '26px',
+                      fontSize: '23px',
                     }"
                   >
                     {{ item.text }}
@@ -120,9 +120,7 @@
             </v-card>
           </v-flex>
         </v-layout>
-        <Tablecreate :title="false" :buttons="false"></Tablecreate>
-      </v-container>
-
+        
       <v-layout row wrap>
         <v-flex d-flex lg4 sm6 xs12>
           <Chart></Chart>
@@ -134,6 +132,9 @@
           <Chart3></Chart3>
         </v-flex>
       </v-layout>
+      
+        <Tablecreate :title="false" :buttons="false"></Tablecreate>
+      </v-container>
       <v-flex class="d-flex justify-center mb-6">
         <circular></circular>
       </v-flex>
@@ -193,30 +194,11 @@ export default {
       },
       {
         id: 4,
-        color: "brown",
+        color: "black",
         icon: "mdi-ticket",
         text: "loading...",
       },
     ],
-    //     drawer: null,
-    //     items: [
-    //       { icon: 'mdi-lightbulb-outline', text: 'Notes' },
-    //       { icon: 'mdi-reminder', text: 'Reminders' },
-    //       { divider: true },
-    //       { heading: 'ticket' },
-    //       { icon: 'mdi-ticket-percent', text: 'Create new Ticket' },
-    //       { icon: 'mdi-ticket-percent-outline', text: 'View new Ticket' },
-    //       { divider: true },
-    //       { icon: 'mdi-archive', text: 'Archive' },
-    //       { icon: 'mdi-delete', text: 'Delete Ticket' },
-    //       { icon: 'mdi-calendar', text: 'Calendar' },
-    //       { divider: true },
-    //       { icon: 'mdi-cog', text: 'Settings' },
-    //       { icon: 'mdi-comment-outline', text: 'Comment' },
-    //       { icon: 'mdi-calendar', text: 'Calendar' },
-    //       { icon: 'mdi-help', text: 'Help' },
-    //       { icon: 'mdi-phonelink', text: 'App downloads' },
-    //     ],
   }),
   created() {
     getUsers().then((res) => {
@@ -250,7 +232,7 @@ export default {
       // alert(res.data.length);
       this.$set(this.items, 3, {
         id: 4,
-        color: "yellow",
+        color: "black",
         icon: "mdi-ticket",
         text: res.data.length + " Ticket Deleted",
       });

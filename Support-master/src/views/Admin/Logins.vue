@@ -3,6 +3,16 @@
     <v-row>
       <v-col md="6" offset-md="3">
         <v-card class="mx-auto mt-5" max-width="600" color="yellow lighten-3">
+              <v-btn
+      class="mx-2"
+      dark
+      color="indigo"
+      to="login"
+    >
+      <v-icon dark>
+        mdi-arrow-left
+      </v-icon>
+    </v-btn>
           <v-card-title class="text-center justify-center py-6">
             <h2
               class="display-2 font-weight-bold"

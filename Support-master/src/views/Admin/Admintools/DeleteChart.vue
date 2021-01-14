@@ -34,7 +34,7 @@
       <v-btn
         block
         text
-        href="TableView"
+        href="TableAdminView"
       >
         Go to Report
       </v-btn>

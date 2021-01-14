@@ -79,7 +79,7 @@
     <v-card-actions class="text-center justify-center py-6">
       <v-btn 
       color="success"
-      @click="register(snackbar = true)"
+      @click="register(validate = true)"
       >Done 
     </v-btn>
       <v-snackbar
@@ -120,10 +120,6 @@ export default {
       phonenumber: '',
       password: '',
     },
-    // gender: [
-    //   'Female',
-    //   'Male',
-    // ],
     passwordd: false,
     snackbar: false,
     text: 'Register success',
@@ -176,6 +172,11 @@ export default {
       reset () {
         this.$refs.form.reset()
       },
+      validate() {
+      if (this.$refs.form.validate()) {
+        this.snackbar = true;
+      }
+    },
     }
   };
 </script>

@@ -96,7 +96,7 @@
         <span class="hidden-sm-and-down">Support Ticketing System</span>
       </div>
       </v-toolbar-title>
-      <v-text-field
+      <!-- <v-text-field
         flat
         solo-inverted
         hide-details
@@ -104,7 +104,7 @@
         v-model="Search"
         class="hidden-sm-and-down"
         color="amber"
-      />
+      /> -->
       <v-spacer />
       <v-btn icon
       color="amber"
@@ -311,7 +311,7 @@
         { icon: 'mdi-map-marker', text: 'Maps', name: 'Maps' },
         { icon: 'mdi-help', text: 'Help' },
         // { icon: 'mdi-cellphone-link', text: 'Download' },
-        { icon: 'mdi-keyboard', text: 'Go to the Admin', name: 'home' },
+        // { icon: 'mdi-keyboard', text: 'Go to the Admin', name: 'home' },
       ],
     }),
     methods: {
