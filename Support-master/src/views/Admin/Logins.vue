@@ -59,6 +59,7 @@
               :enabled="!valid"
               color="primary"
               depressed
+              :loading="loading"
               @click="logins((validate = true))"
               class="mr-4"
             >
@@ -126,6 +127,7 @@ export default {
   data: () => ({
     email: "",
     dialog: false,
+    loading: false,
     password: "",
     snackbar: false,
     text: "Sorry But Password or Email Incorrect",
@@ -144,6 +146,10 @@ export default {
   methods: {
     logins() {
       const base = this;
+      this.loading = true;
+      setTimeout(()=>{
+        this.loading=!true
+      },2000)
       let request = {
         email: this.email,
         password: this.password,

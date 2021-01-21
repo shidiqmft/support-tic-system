@@ -36,6 +36,7 @@
           :enabled="!valid"
           color="info"
           class="mr-4"
+          :loading="loading"
           @click="login((validate = true))"
         >
           Login
@@ -74,6 +75,7 @@ export default {
     vertical: true,
     passwordd: false,
     valid: true,
+    loading: false,
     // name: '',
     email: "",
     password: "",
@@ -92,8 +94,12 @@ export default {
     },
   }),
   methods: {
-    login() {
+       login() {
       const base = this;
+      this.loading = true;
+      setTimeout(()=>{
+        this.loading=!true
+      },2000)
       let request = {
         email: this.email,
         password: this.password,

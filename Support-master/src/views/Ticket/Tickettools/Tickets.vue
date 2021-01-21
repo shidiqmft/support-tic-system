@@ -15,7 +15,7 @@
             <v-btn color="teal" dark class="mb-2" v-on="on">New Data</v-btn>
           </template>
 
-          <v-card color="blue-grey darken-1" dark :loading="isUpdating">
+          <v-card color="blue-grey darken-1" dark>
             <template v-slot:progress>
               <v-progress-linear
                 absolute
@@ -64,7 +64,6 @@
                     <v-text-field
                       ref="Number"
                       v-model="form.number"
-                      :disabled="isUpdating"
                       :rules="numberRules"
                       filled
                       required
@@ -76,7 +75,6 @@
                     <v-text-field
                       ref="Name"
                       v-model="form.name"
-                      :disabled="isUpdating"
                       :rules="nameRules"
                       filled
                       required
@@ -167,7 +165,6 @@
                       clear-icon="mdi-close-circle"
                       label="Description"
                       required
-                      :disabled="isUpdating"
                       :rules="descriptionRules"
                       filled
                       color="blue-grey lighten-2"
@@ -395,9 +392,9 @@
               ></v-switch> -->
               <v-spacer></v-spacer>
               <v-btn
-                :loading="isUpdating"
                 color="blue-grey darken-3"
                 depressed
+                :loading="loading"
                 @click="saveNewTicket((save = true))"
               >
                 <v-icon left>mdi-update</v-icon>
@@ -531,8 +528,7 @@ export default {
   name: "Tickets",
   data() {
     return {
-
-      isUpdating: false,
+      loading: false,
       prioritychoice2: ["High", "Low"],
       divisionchoice2: ["Frontend", "Backend"],
       form: {
@@ -603,11 +599,6 @@ export default {
     dialog(val) {
       val || this.close();
     },
-    isUpdating(val) {
-      if (val) {
-        setTimeout(() => (this.isUpdating = false), 3000);
-      }
-    },
   },
 
   created() {
@@ -617,6 +608,10 @@ export default {
 
   methods: {
     saveNewTicket() {
+      this.loading = true;
+      setTimeout(()=>{
+      this.loading = !true
+      },2000)
       let request = {
         number: this.form.number,
         name: this.form.name,
@@ -626,6 +621,8 @@ export default {
         date: this.form.date,
         email: localStorage.getItem("email"),
       };
+      this.loading = false;
+      this.dialog = false;
       // console.log(request);
       // return;
 
