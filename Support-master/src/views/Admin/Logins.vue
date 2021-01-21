@@ -88,7 +88,7 @@
 
         <v-card-text>
           If you want to become admin and managed the system you must fill our terms and condition so you become administrator, if you interested to become administrator you can contact our team at
-        <p style="font-weight: bold;">Email : Support.Ticketying.System@gmail.com</p>
+        <p style="font-weight: bold;">Email : Support.Ticket.System@gmail.com</p>
         </v-card-text>
 
         <v-divider></v-divider>
