@@ -79,7 +79,7 @@
     <v-card-actions class="text-center justify-center py-6">
       <v-btn 
       color="success"
-      @click="register(validate = true)"
+      @click="register(snackbar = true)"
       >Done 
     </v-btn>
       <v-snackbar
@@ -120,6 +120,10 @@ export default {
       phonenumber: '',
       password: '',
     },
+    // gender: [
+    //   'Female',
+    //   'Male',
+    // ],
     passwordd: false,
     snackbar: false,
     text: 'Register success',
@@ -127,7 +131,7 @@ export default {
     nameRules: [
     v => !!v || 'Name is required',
     v => (v && v.length <= 15) || 'Name must be less than 15 characters',
-    v => v.length >= 5 || 'Min 5 characters'
+    v => v.length >= 6 || 'Min 6 characters'
       ],
     emailRules: [
     v => !!v || 'Email is required',
@@ -172,11 +176,6 @@ export default {
       reset () {
         this.$refs.form.reset()
       },
-      validate() {
-      if (this.$refs.form.validate()) {
-        this.snackbar = true;
-      }
-    },
     }
   };
 </script>

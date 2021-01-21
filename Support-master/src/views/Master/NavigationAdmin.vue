@@ -3,43 +3,18 @@
     <v-app-bar
       app
       clipped-left
-      color="amber"
+      color="cyan darken-4"
     >
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <span class="title ml-3 mr-5">Admin&nbsp;<span class="font-weight-light">Dashboard</span></span>
-      <!-- <v-text-field
-        solo-inverted
-        flat
-        hide-details
-        label="Search"
-        prepend-inner-icon="mdi-account-search"
-      ></v-text-field> -->
-
+      <v-app-bar-nav-icon color="white" @click="drawer = !drawer"></v-app-bar-nav-icon>
+          <h3  class="font-weight-bold white--text">
+            Admin Dashboard
+          </h3>
       <v-spacer></v-spacer>
       <v-btn icon
-      color="grey"
+      color="white"
       href="AdminHome">
         <v-icon>mdi-apps</v-icon>
       </v-btn>
-
-
-      <v-badge
-        v-model="show"
-        color="cyan"
-        left
-      >
-      <template v-slot:badge>
-          <span>6</span>
-      </template>
-      <v-btn 
-      icon
-      color="grey">
-        <v-icon
-        @mouseover="show = true"
-        @mouseout="show = false"
-        >mdi-bell</v-icon>
-      </v-btn>
-    </v-badge>
 
   <template>
   <div class="text-center">
@@ -53,7 +28,7 @@
       <v-btn
         icon
         large
-        color="primary" 
+        color="teal darken-4" 
         dark v-on="on"
       >
         <v-avatar
@@ -75,18 +50,7 @@
 
             <v-list-item-content>
               <v-list-item-title>Admin</v-list-item-title>
-              <!-- <v-list-item-subtitle>Mahasiwa</v-list-item-subtitle> -->
             </v-list-item-content>
-<!-- 
-            <v-list-item-action>
-              <v-btn
-                :class="fav ? 'red--text' : ''"
-                icon
-                @click="fav = !fav"
-              >
-                <v-icon>mdi-heart</v-icon>
-              </v-btn>
-            </v-list-item-action> -->
 
             <template>
             <v-btn 
@@ -129,28 +93,6 @@
 
         <v-divider></v-divider>
 
-<!--         <v-list>
-          <v-list-item>
-            <v-list-item-action>
-              <v-switch v-model="message" color="purple"></v-switch>
-            </v-list-item-action>
-            <v-list-item-title>Enable messages</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-action>
-              <v-switch v-model="hints" color="purple"></v-switch>
-            </v-list-item-action>
-            <v-list-item-title>Enable hints</v-list-item-title>
-          </v-list-item>
-        </v-list> -->
-
-        <!-- <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn text @click="menu = false">Cancel</v-btn>
-          <v-btn color="primary" text @click="menu = false">Save</v-btn>
-        </v-card-actions> -->
       </v-card>
     </v-menu>
   </div>
@@ -161,32 +103,24 @@
       v-model="drawer"
       app
       clipped
-      color="grey lighten-4"
+      color="white"
     >
       <v-list
         dense
-        class="grey lighten-4"
+        class="cyan darken-4"
       >
         <template v-for="(item, i) in items">
           <v-row
             v-if="item.heading"
             :key="i"
             align="center"
+            color="white"
           >
             <v-col cols="6">
-              <v-subheader v-if="item.heading">
+              <v-subheader color="white"  v-if="item.heading">
                 {{ item.heading }}
               </v-subheader>
             </v-col>
-<!--             <v-col
-              cols="6"
-              class="text-right"
-            >
-              <v-btn
-                small
-                text
-              >edit</v-btn>
-            </v-col> -->
           </v-row>
           <v-divider
             v-else-if="item.divider"
@@ -202,10 +136,10 @@
             link
           >
             <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
+              <v-icon color="white" >{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title class="grey--text">
+              <v-list-item-title class="white--text">
                 {{ item.text }}
               </v-list-item-title>
             </v-list-item-content>
@@ -215,34 +149,6 @@
     </v-navigation-drawer>
     <v-divider></v-divider>
     <router-view></router-view>
-    <!-- <v-main> -->
-<!--       <v-container
-        fluid
-        class="grey lighten-4 fill-height"
-      >
-        <v-row
-          justify="center"
-          align="center"
-        >
-          <v-col class="shrink">
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  :href="source"
-                  icon
-                  large
-                  target="_blank"
-                  v-on="on"
-                >
-                  <v-icon large>mdi-code-tags</v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-            </v-tooltip>
-          </v-col>
-        </v-row>
-      </v-container> -->
-<!--     </v-main> -->
   </v-app>
 </template>
 
@@ -260,7 +166,6 @@
         { icon: 'mdi-home', text: 'Home', name : 'AdminHome' },
         { icon: 'mdi-reminder', text: 'Reminders', name : 'Reminders' },
         { divider: true },
-        { heading: 'ticket' },
         { icon: 'mdi-ticket-percent', text: 'View Ticket', name: 'TableAdmin' },
         { divider: true },
         { icon: 'mdi-bell', text: 'Notification', name: 'Notification' },
@@ -269,8 +174,9 @@
         { icon: 'mdi-cog', text: 'Settings', name: 'Setting' },
         // { icon: 'mdi-comment-outline', text: 'Comment' },
         { icon: 'mdi-calendar', text: 'Calendar', name: 'Calendar' },
-        { icon: 'mdi-help', text: 'Help' },
-        { icon: 'mdi-phonelink', text: 'App downloads' },
+        { },
+        { },
+        { },
       ],
     }),
     methods: {
@@ -288,7 +194,6 @@
     }
   }
 </script>
-
 <style>
 #keep .v-navigation-drawer__border {
   display: none

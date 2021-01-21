@@ -8,15 +8,6 @@
       </v-card-title>
       <v-card-text>
         <v-form ref="form" v-model="valid" lazy-validation solo>
-          <!--    <v-text-field
-          v-model="name"
-          :counter="15"
-          :rules="nameRules"
-          prepend-icon="mdi-account-cicle"
-          hint="At least 5 characters"
-          label="Name"
-          required
-          /> -->
           <v-text-field
             v-model="email"
             :rules="emailRules"
@@ -49,7 +40,9 @@
         >
           Login
         </v-btn>
-        <v-btn color="success" to="register">Register</v-btn>
+
+        <v-btn color="success" to="register" class="mr-4">Register</v-btn>
+
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
             <v-btn color=" Success" to="logins" v-bind="attrs" v-on="on"

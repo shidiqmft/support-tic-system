@@ -7,7 +7,6 @@
       color="pink"
       dark
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
       <v-toolbar-title>Notification</v-toolbar-title>
 
@@ -89,12 +88,6 @@
           headline: 'Backend',
           subtitle: `Ready to fix send data in last time project`,
           title: 'Aldino Bagas',
-        },
-        {
-          action: '6 hr',
-          headline: 'Frontend',
-          subtitle: 'Finished to fix last error and ready to deploy',
-          title: 'Dian Andini',
         },
         {
           action: '12 hr',

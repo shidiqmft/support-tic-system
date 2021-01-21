@@ -309,7 +309,7 @@
         { icon: 'mdi-message', text: 'About Us', name: 'Article' },
         { icon: 'mdi-cog', text: 'Settings', name: 'Settings' },
         { icon: 'mdi-map-marker', text: 'Maps', name: 'Maps' },
-        { icon: 'mdi-help', text: 'Help' },
+        // { icon: 'mdi-help', text: 'Help' },
         // { icon: 'mdi-cellphone-link', text: 'Download' },
         // { icon: 'mdi-keyboard', text: 'Go to the Admin', name: 'home' },
       ],

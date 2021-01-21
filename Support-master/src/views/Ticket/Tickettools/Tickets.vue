@@ -641,6 +641,7 @@ export default {
           this.getData();
         });
       }
+      this.close()
     },
     remove(item) {
       const index = this.pilih.indexOf(item.choice);

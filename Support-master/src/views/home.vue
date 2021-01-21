@@ -33,9 +33,9 @@
         >
           <v-flex xs12 sm4 class="my-4">
             <div class="black--text mb-2 display-1 text-center">
-              <h2 class="headline">The best way to start Ticketing</h2>
+              <h2 class="headline">The best way to create Ticket</h2>
               <span class="subheading">
-                Easy to use to develop
+                Easy to use for develop a project
               </span>
             </div>
           </v-flex>
@@ -45,13 +45,13 @@
                 <v-flex xs12 md4>
                   <v-card flat class="transparent">
                     <v-card-text class="text-center">
-                      <v-icon x-large class="orange--text text--lighten-2">mdi-palette</v-icon>
+                      <v-icon x-large class="orange--text text--lighten-2">mdi-account-check</v-icon>
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-center">Material Design</div>
+                      <div class="headline text-center">User System</div>
                     </v-card-title>
                     <v-card-text>
-                      Support Ticketing Sytem memiliki material dsign yang mudah digunakan oleh user dari pemula hingga senior sekalipun.
+                      You decide if you want to use a form to create a ticket or just check you receive a ticket from other user.
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -64,7 +64,7 @@
                       <div class="headline">Fast development</div>
                     </v-card-title>
                     <v-card-text>
-                      Mempermudah development dan lebih cepat dalam pengerjaan sebuah project.
+                      Make a project development more easier to create and develop.
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -74,10 +74,10 @@
                       <v-icon x-large class="orange--text text--lighten-2">mdi-wrench</v-icon>
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-center">Completely Open Sourced</div>
+                      <div class="headline text-center">Easy Features</div>
                     </v-card-title>
                     <v-card-text>
-                      Ticketing Support System sangat mudah digunakan dan memiliki enskripsi yang lengkap dalam melakukan pengiriman tiket.
+                      Find and generate the tickets you want easily with our filtering and search tools.
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -114,7 +114,7 @@
                   <div class="headline">Company info</div>
                 </v-card-title>
                 <v-card-text>
-                  Support Ticketing Sytem bergerak dibidang ticketing yang tujuan utamanya untuk mempermudah developer dalam pembuatan project yang lebih terenskripsi
+                  Support Ticketing System is made with love by our team to help small companies to be successful.
                 </v-card-text>
               </v-card>
             </v-flex>
@@ -124,7 +124,7 @@
                   <div class="headline">Contact us</div>
                 </v-card-title>
                 <v-card-text>
-                  Jika memiliki kendala dan kesusahan anda dapat dengan mudah menghubungi kita
+                  If you have problems and any further information you can easily contact us
                 </v-card-text>
                 <v-list class="transparent">
                   <v-list-item>
@@ -149,7 +149,7 @@
                       <v-icon class="blue--text text--lighten-2">mdi-email</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
-                      <v-list-item-title>SupportTicketing@gmail.com</v-list-item-title>
+                      <v-list-item-title>Support.Ticketing.System@gmail.com</v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
                 </v-list>
@@ -160,18 +160,3 @@
       </section>
     </v-content>
   </template>
-<!--     <contact></contact>
-
-    <v-footer 
-    color="grey lighten-1"
-    padless
-    >
-    <v-col
-      class="text-center"
-      cols="12"
-    >
-      {{ new Date().getFullYear() }} — <strong>Support Ticketing Sistem</strong>
-    </v-col>
-  </v-footer>
-  </v-app>
-</template> -->

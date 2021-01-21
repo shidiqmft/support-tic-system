@@ -3,8 +3,8 @@
     <v-row>
       <v-col md="6" offset-md="3">
         <v-card class="mx-auto mt-5" max-width="600" color="yellow lighten-3">
-              <v-btn
-      class="mx-2"
+      <v-btn
+      class="mr-4"
       dark
       color="indigo"
       to="login"
@@ -60,9 +60,52 @@
               color="primary"
               depressed
               @click="logins((validate = true))"
+              class="mr-4"
             >
               Login
             </v-btn>
+            <div class="text-center">
+
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="red lighten-2"
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          Become Admin?
+        </v-btn>
+      </template>
+
+      <v-card>
+        <v-card-title class="headline grey lighten-2">
+          Do You Want to Become Administrator?
+        </v-card-title>
+
+        <v-card-text>
+          If you want to become admin and managed the system you must fill our terms and condition so you become administrator, if you interested to become administrator you can contact our team at
+        <p style="font-weight: bold;">Email : Support.Ticketying.System@gmail.com</p>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+            I accept
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -82,6 +125,7 @@ export default {
   name: "Logins",
   data: () => ({
     email: "",
+    dialog: false,
     password: "",
     snackbar: false,
     text: "Sorry But Password or Email Incorrect",

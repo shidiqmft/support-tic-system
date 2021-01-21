@@ -63,6 +63,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.11",
+    "mongose": "0.0.2-security",
     "twilio": "^3.51.0"
   },
   "devDependencies": {
