@@ -2,12 +2,12 @@
   <v-data-table
     :headers="headers"
     :items="tickets"
-    sort-by="name"
+    sort-by="date"
     class="elevation-1"
   >
     <template v-slot:top>
-      <v-toolbar flat color="white">
-        <v-toolbar-title>My Tickets</v-toolbar-title>
+      <v-toolbar flat color="grey darken-2">
+        <v-toolbar-title class="font-weight-bold white--text" >My Tickets</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="800px">
@@ -27,25 +27,6 @@
 
             <v-img height="200" src="@/views/Image/view.jpg">
               <v-row>
-                <!-- <v-col class="text-right" cols="12">
-                  <v-menu bottom left transition="slide-y-transition">
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn icon v-bind="attrs" v-on="on">
-                        <v-icon>mdi-dots-vertical</v-icon>
-                      </v-btn>
-                    </template>
-                    <v-list>
-                      <v-list-item @click="isUpdating = true">
-                        <v-list-item-action>
-                          <v-icon>mdi-settings</v-icon>
-                        </v-list-item-action>
-                        <v-list-item-content>
-                          <v-list-item-title>Update</v-list-item-title>
-                        </v-list-item-content>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
-                </v-col> -->
                 <v-row class="pa-4" align="center" justify="center">
                   <v-col class="text-center">
                     <h3 class="headline">New Ticket</h3>
@@ -82,80 +63,6 @@
                       label="Name"
                     ></v-text-field>
                   </v-col>
-                  <!-- <v-toolbar dense>
-                    <v-overflow-btn
-                      :items="dropdown_font"
-                      label="Select font"
-                      hide-details
-                      class="pa-0"
-                    />
-
-                    <template v-if="$vuetify.breakpoint.mdAndUp">
-                      <v-divider vertical></v-divider>
-
-                      <v-overflow-btn
-                        :items="dropdown_edit"
-                        editable
-                        label="Select size"
-                        hide-details
-                        class="pa-0"
-                        overflow
-                      />
-
-                      <v-divider vertical></v-divider>
-
-                      <v-spacer></v-spacer> -->
-
-                      <!-- <v-btn-toggle
-                        v-model="toggle_multiple"
-                        color="primary"
-                        dense
-                        group
-                        multiple
-                      >
-                        <v-btn :value="1" text>
-                          <v-icon>mdi-format-bold</v-icon>
-                        </v-btn>
-
-                        <v-btn :value="2" text>
-                          <v-icon>mdi-format-italic</v-icon>
-                        </v-btn>
-
-                        <v-btn :value="3" text>
-                          <v-icon>mdi-format-underline</v-icon>
-                        </v-btn>
-
-                        <v-btn :value="4" text>
-                          <v-icon>mdi-format-color-fill</v-icon>
-                        </v-btn>
-                      </v-btn-toggle>
-
-                      <div class="mx-4"></div>
-
-                      <v-btn-toggle
-                        v-model="toggle_exclusive"
-                        color="primary"
-                        dense
-                        group
-                      >
-                        <v-btn :value="1" text>
-                          <v-icon>mdi-format-align-left</v-icon>
-                        </v-btn>
-
-                        <v-btn :value="2" text>
-                          <v-icon>mdi-format-align-center</v-icon>
-                        </v-btn>
-
-                        <v-btn :value="3" text>
-                          <v-icon>mdi-format-align-right</v-icon>
-                        </v-btn>
-
-                        <v-btn :value="4" text>
-                          <v-icon>mdi-format-align-justify</v-icon>
-                        </v-btn>
-                      </v-btn-toggle>
-                    </template>
-                  </v-toolbar> -->
 
                   <v-col cols="12">
                     <v-textarea
@@ -181,57 +88,6 @@
                       v-model="priority"
                       label="Priority"
                     />
-                    <!-- <v-autocomplete
-                      ref="Priority"
-                      v-model="prioritychoice"
-                      :disabled="isUpdating"
-                      :items="prioritychoice"
-                      :rules="priorityRules"
-                      required
-                      filled
-                      chips
-                      color="blue-grey lighten-2"
-                      label="Priority"
-                      item-text="Choice"
-                      item-value="Choice"
-                    >
-                      <template v-slot:selection="data">
-                        <v-chip
-                          v-bind="data.attrs"
-                          :input-value="data.selected"
-                          close
-                          @click="data.select"
-                          @click:close="remove(data.item)"
-                        >
-                          <v-avatar left>
-                            <v-img :src="data.item.avatar"></v-img>
-                          </v-avatar>
-                          {{ data.item.choice }}
-                        </v-chip>
-                      </template>
-
-                      <template v-slot:item="data">
-                        <template v-if="typeof data.item !== 'object'">
-                          <v-list-item-content
-                            v-text="data.item"
-                          ></v-list-item-content>
-                        </template>
-                        <template v-else>
-                          <v-list-item-avatar>
-                            <img :src="data.item.avatar" />
-                          </v-list-item-avatar>
-
-                          <v-list-item-content>
-                            <v-list-item-title
-                              v-html="data.item.choice"
-                            ></v-list-item-title>
-                            <v-list-item-subtitle
-                              v-html="data.item.group"
-                            ></v-list-item-subtitle>
-                          </v-list-item-content>
-                        </template>
-                      </template>
-                    </v-autocomplete> -->
                   </v-col>
 
                   <v-col cols="12" md="6">
@@ -240,57 +96,6 @@
                       v-model="division"
                       label="Division"
                     />
-                    <!-- <v-autocomplete
-                      ref="Divison"
-                      v-model="divisionchoice"
-                      :disabled="isUpdating"
-                      :items="divisionchoice"
-                      :rules="DivisionRules"
-                      required
-                      filled
-                      chips
-                      color="blue-grey lighten-2"
-                      label="Division"
-                      item-text="Choice"
-                      item-value="Choice"
-                    >
-                      <template v-slot:selection="data">
-                        <v-chip
-                          v-bind="data.attrs"
-                          :input-value="data.selected"
-                          close
-                          @click="data.select"
-                          @click:close="remove(data.item)"
-                        >
-                          <v-avatar left>
-                            <v-img :src="data.item.avatar"></v-img>
-                          </v-avatar>
-                          {{ data.item.choice }}
-                        </v-chip>
-                      </template>
-
-                      <template v-slot:item="data">
-                        <template v-if="typeof data.item !== 'object'">
-                          <v-list-item-content
-                            v-text="data.item"
-                          ></v-list-item-content>
-                        </template>
-                        <template v-else>
-                          <v-list-item-avatar>
-                            <img :src="data.item.avatar" />
-                          </v-list-item-avatar>
-
-                          <v-list-item-content>
-                            <v-list-item-title
-                              v-html="data.item.choice"
-                            ></v-list-item-title>
-                            <v-list-item-subtitle
-                              v-html="data.item.group"
-                            ></v-list-item-subtitle>
-                          </v-list-item-content>
-                        </template>
-                      </template>
-                    </v-autocomplete> -->
                   </v-col>
 
                   <v-col cols="12" sm="6" md="4">
@@ -382,14 +187,6 @@
 
             <v-divider></v-divider>
             <v-card-actions>
-              <!-- <v-switch
-                v-model="autoUpdate"
-                :disabled="isUpdating"
-                class="mt-0"
-                color="green lighten-2"
-                hide-details
-                label="Auto Update"
-              ></v-switch> -->
               <v-spacer></v-spacer>
               <v-btn
                 color="blue-grey darken-3"
@@ -405,17 +202,12 @@
         </v-dialog>
       </v-toolbar>
     </template>
+    
     <template v-slot:item.action="{ item }">
       <v-icon small class="mr-2" @click="editItem(item)">
         mdi-content-save-edit-outline
       </v-icon>
-      <!-- <v-icon small @click="deleteItem(item)">
-        mdi-delete
-      </v-icon> -->
     </template>
-    <!-- <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize">Reset</v-btn>
-    </template> -->
 
     <v-dialog v-model="dialog" max-width="500px">
       <template v-slot:activator="{ on }" v-if="buttons">

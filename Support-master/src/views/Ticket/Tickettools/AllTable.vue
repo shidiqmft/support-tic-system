@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card color="grey lighten-1">
     <v-card-title>
       View Ticket
       <v-spacer></v-spacer>
@@ -11,7 +11,7 @@
         hide-details
       />
     </v-card-title>
-    <v-data-table :headers="headers" :items="NewTable" :search="search" />
+    <v-data-table :headers="headers" :items="NewTable" :search="search" sort-by="number" />
   </v-card>
 </template>
 <script>
