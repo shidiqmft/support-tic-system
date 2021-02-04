@@ -96,15 +96,6 @@
         <span class="hidden-sm-and-down">Support Ticketing System</span>
       </div>
       </v-toolbar-title>
-      <!-- <v-text-field
-        flat
-        solo-inverted
-        hide-details
-        prepend-inner-icon="mdi-magnify"
-        v-model="Search"
-        class="hidden-sm-and-down"
-        color="amber"
-      /> -->
       <v-spacer />
       <v-btn icon
       color="amber"
@@ -292,26 +283,9 @@
             { icon: 'mdi-ticket-confirmation', text: 'View Ticket', name: 'AllTicket' },
           ],
         },
-        // {
-        //   icon: 'mdi-chevron-up',
-        //   'icon-alt': 'mdi-chevron-down',
-        //   text: 'More',
-        //   model: false,
-        //   children: [
-        //     { text: 'Import' },
-        //     { text: 'Export' },
-        //     { text: 'Print' },
-        //     { text: 'Undo changes' },
-        //     { text: 'Other contacts' },
-        //   ],
-        // },
-        // { icon: 'mdi-history', text: 'History' },
         { icon: 'mdi-message', text: 'About Us', name: 'Article' },
         { icon: 'mdi-cog', text: 'Settings', name: 'Settings' },
         { icon: 'mdi-map-marker', text: 'Maps', name: 'Maps' },
-        // { icon: 'mdi-help', text: 'Help' },
-        // { icon: 'mdi-cellphone-link', text: 'Download' },
-        // { icon: 'mdi-keyboard', text: 'Go to the Admin', name: 'home' },
       ],
     }),
     methods: {

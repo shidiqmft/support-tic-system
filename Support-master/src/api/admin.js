@@ -23,3 +23,36 @@ export async function loginAsAdmin(request={}) {
         data: request
     }}); 
 }
+
+export async function postAsUser(request = {}) {
+    return await axios({
+      ...requestBody,
+      ...{
+        method: "post",
+        url: "/register",
+        data: request,
+      },
+    });
+  }
+  
+//   export async function updateUser(id, data) {
+//     return await axios({
+//       ...requestBody,
+//       ...{
+//         method: "put",
+//         url: "/register/" + id,
+//         data,
+//       },
+//     });
+//   }
+  
+// export async function getUser(email = "", is_deleted = false) {
+//     return await axios({
+//       ...requestBody,
+//       ...{
+//         method: "get",
+//         url:
+//           "/tickets?email=" + email + "&is_deleted=" + (is_deleted ? "true" : ""),
+//       },
+//     });
+//   }

@@ -85,8 +85,6 @@ export default {
   }),
   created() {
     getUsers().then((res) => {
-      // console.log(res.data);
-      // alert(res.data.length);
       this.$set(this.items, 0, {
         id: 1,
         color: "blue",
@@ -101,8 +99,6 @@ export default {
       });
     });
     getTickets().then((res) => {
-      // console.log(res.data);
-      // alert(res.data.length);
       this.$set(this.items, 1, {
         id: 2,
         color: "amber",
@@ -111,8 +107,6 @@ export default {
       });
     });
     getTickets("", true).then((res) => {
-      // console.log(res.data);
-      // alert(res.data.length);
       this.$set(this.items, 3, {
         id: 4,
         color: "red",

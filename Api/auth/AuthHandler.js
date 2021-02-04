@@ -22,24 +22,7 @@ module.exports.me = (event, context) => {
         body: { stack: err.stack, message: err.message }
       }));
   };
-
-  // module.exports.table = (event, context) => {
-  //   context.callbackWaitsForEmptyEventLoop = false;
-  //   return connectToDatabase()
-  //     .then(() =>
-  //       tables(event.requestContext.authorizer.principalId) // the decoded.id from the VerifyToken.auth will be passed along as the principalId under the authorizer
-  //     )
-  //     .then(session => ({
-  //       statusCode: 200,
-  //       body: JSON.stringify(session)
-  //     }))
-  //     .catch(err => ({
-  //       statusCode: err.statusCode || 500,
-  //       headers: { 'Content-Type': 'text/plain' },
-  //       body: { stack: err.stack, message: err.message }
-  //     }));
-  // };
-
+  
 module.exports.login = (event, context) => {
     context.callbackWaitsForEmptyEventLoop = false;
     return connectToDatabase()

@@ -42,11 +42,9 @@
           Login
         </v-btn>
 
-        <v-btn color="success" to="register" class="mr-4">Register</v-btn>
-
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color=" Success" to="logins" v-bind="attrs" v-on="on"
+            <v-btn color=" Success " to="logins" v-bind="attrs" v-on="on"
               >Admin</v-btn
             >
           </template>
@@ -79,11 +77,6 @@ export default {
     // name: '',
     email: "",
     password: "",
-    // nameRules: [
-    // v => !!v || 'Name is required',
-    // v => (v && v.length <= 15) || 'Name must be less than 15 characters',
-    // v => v.length >= 5 || 'Min 5 characters'
-    //   ],
     emailRules: [
       (v) => !!v || "Email is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
@@ -99,7 +92,7 @@ export default {
       this.loading = true;
       setTimeout(()=>{
         this.loading=!true
-      },2000)
+      },800)
       let request = {
         email: this.email,
         password: this.password,

@@ -4,14 +4,6 @@
 
 const routes = [
   {
-    path: "/register",
-    name: "register",
-    meta: {
-      public: true,
-    },
-    component: () => import("@/views/Register.vue"),
-  },
-  {
     path: "/login",
     name: "login",
     meta: {
@@ -68,14 +60,14 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/page",
-    name: "Page",
-    meta: {
-      public: true,
-    },
-    component: () => import("@/views/page.vue"),
-  },
+  // {
+  //   path: "/page",
+  //   name: "Page",
+  //   meta: {
+  //     public: true,
+  //   },
+  //   component: () => import("@/views/page.vue"),
+  // },
   {
     path: "/logins",
     name: "Logins",
@@ -125,6 +117,11 @@ const routes = [
         path: "/setting",
         name: "Setting",
         component: () => import("@/views/Admin/Setting.vue"),
+      },
+      {
+        path: "/AddUser",
+        name: "AddUser",
+        component: () => import("@/views/Admin/AddUser.vue"),
       },
     ],
   },

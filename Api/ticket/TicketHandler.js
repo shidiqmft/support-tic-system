@@ -14,8 +14,8 @@ module.exports.create = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
   const msg = {
-    to: "alevandro1602@gmail.com", // Change to your recipient
-    from: "hairulanam21@gmail.com", // Change to your verified sender
+    to: "shidiqmft@gmail.com", // Change to your recipient
+    from: "shidiq.13@students.amikom.ac.id", // Change to your verified sender
     subject: "Sending with SendGrid is Fun",
     text: "and easy to do anywhere, even with Node.js",
     html: "<strong>and easy to do anywhere, even with Node.js</strong>",
@@ -171,22 +171,3 @@ module.exports.delete = (event, context, callback) => {
  * Helpers
  */
 
-// function getTables() {
-//   return User.aggregate([
-// {$skip : 5},
-// {$limit :20},
-// {$sort: {
-//   name: 1,
-//   email: 1
-//         }
-// },
-// {$project: {
-//   name: 1,
-//   email: 1,
-//   username: 1
-//            }
-// },
-// {}
-//     // {$match : {"telegramPIN": "Jnzoeb4"}}
-// ])
-// }

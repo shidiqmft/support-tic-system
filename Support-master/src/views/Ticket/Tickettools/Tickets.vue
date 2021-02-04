@@ -15,7 +15,7 @@
             <v-btn color="teal" dark class="mb-2" v-on="on">New Data</v-btn>
           </template>
 
-          <v-card color="blue-grey darken-1" dark>
+          <v-card color="blue-grey darken-4" dark>
             <template v-slot:progress>
               <v-progress-linear
                 absolute
@@ -25,14 +25,11 @@
               ></v-progress-linear>
             </template>
 
-            <v-img height="200" src="@/views/Image/view.jpg">
+            <v-img height="200" src="@/views/Image/ayo1 (2).jpeg">
               <v-row>
                 <v-row class="pa-4" align="center" justify="center">
                   <v-col class="text-center">
-                    <h3 class="headline">New Ticket</h3>
-                    <span class="grey--text text--lighten-1">
-                      Create New Ticket</span
-                    >
+                    <h1 class="font-weight-bold display-4 orange darken-4--text">New Ticket</h1>
                   </v-col>
                 </v-row>
               </v-row>
@@ -46,10 +43,10 @@
                       ref="Number"
                       v-model="form.number"
                       :rules="numberRules"
-                      filled
+                      disabled
                       required
                       color="blue-grey lighten-2"
-                      label="Number"
+                      label="Create New Ticket"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="6">
@@ -87,6 +84,8 @@
                       :items="prioritychoice2"
                       v-model="priority"
                       label="Priority"
+                      required
+                      filled
                     />
                   </v-col>
 
@@ -95,6 +94,8 @@
                       :items="divisionchoice2"
                       v-model="division"
                       label="Division"
+                      required
+                      filled
                     />
                   </v-col>
 
@@ -472,24 +473,12 @@ export default {
       this.dialog = true;
     },
 
-    // deleteItem(item) {
-    //   const index = this.tickets.indexOf(item);
-    //   confirm("Are you sure you want to delete this item?") &&
-    //     this.tickets.splice(index, 1);
-    //   // this.$store.commit("deleteItem", index);
-    //   updateTicket(item._id, { is_deleted: true }).then(() => {
-    //     this.getData();
-    //   });
-
-    //   // Todo: Make this delete item from store
-    // },
-
     close() {
       this.dialog = false;
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
-      }, 300);
+      }, 600);
     },
 
     save() {

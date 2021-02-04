@@ -33,6 +33,7 @@
                   >Add New Ticket</v-btn
                 >
               </template>
+              
               <v-card>
                 <v-card-title>
                   <span class="headline">{{ formTitle }}</span>
@@ -45,8 +46,9 @@
                           autofocus
                           color="error"
                           v-model="editedItem.code"
-                          label="Code"
+                          label="Create Ticket"
                           required
+                          disabled
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="12">
@@ -219,7 +221,7 @@ export default {
       return this.$store.getters.getItems;
     },
     formTitle() {
-      return this.editedIndex === -1 ? "New Record" : "Edit Record";
+      return this.editedIndex === -1 ? "" : "Edit Record";
     },
   },
   watch: {
@@ -254,6 +256,7 @@ export default {
         });
       }
     },
+
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
