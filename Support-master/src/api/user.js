@@ -27,6 +27,17 @@ export async function loginAsUser(request = {}) {
   });
 }
 
+export async function registerAsUser(request = {}) {
+  return await axios({
+    ...requestBody,
+    ...{
+      method: "post",
+      url: "/register",
+      data: request,
+    },
+  });
+}
+
 export async function getTickets(email = "", is_deleted = false) {
   return await axios({
     ...requestBody,

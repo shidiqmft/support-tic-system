@@ -1,5 +1,5 @@
 function formatDate(date) {
-  var mydate = new Date(date);
+  var mydate = new window.Date(date);
   // var month = [
   //   "January",
   //   "February",

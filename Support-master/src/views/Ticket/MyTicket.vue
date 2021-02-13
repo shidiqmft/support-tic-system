@@ -2,9 +2,9 @@
   <div>
     <v-content>
       <Header2></Header2>
-      <Tickets></Tickets>
+      <Tickets @snack="snack"></Tickets>
     </v-content>
-    <contact></contact>
+    <!-- <contact></contact> -->
     <!-- <v-footer 
     color="grey lighten-1"
     padless
@@ -17,6 +17,15 @@
     </v-col>
   </v-footer>
   </v-app> -->
+    <v-snackbar v-model="snackbar" :timeout="timeout">
+      {{ snackbarText }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -30,6 +39,9 @@ export default {
   },
   components: { Tickets, Header2 },
   data: () => ({
+    snackbar: true,
+    snackbarText: "",
+    timeout: 2000,
     // dialoglogout: false,
     // drawer: null,
     // fav: true,
@@ -71,10 +83,14 @@ export default {
     //   { icon: 'mdi-keyboard', text: 'Go to the old version' },
     // ],
   }),
-  // methods: {
-  //   goToPage(name){
-  //     this.$router.push({name: name});
-  //   }
-  // }
+  methods: {
+    // goToPage(name){
+    //   this.$router.push({name: name});
+    // }
+    snack(text) {
+      this.snackbar = true;
+      this.snackbarText = text;
+    },
+  },
 };
 </script>

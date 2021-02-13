@@ -1,12 +1,5 @@
 const connectToDatabase = require("../db");
-const Ticket = require("./Ticket");
-const User = require("./../user/User");
-const Notification = require("./../notifications/Notification");
-const utils = require("./../utils");
-const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(
-  "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"
-);
+const Notification = require("./Notification");
 
 /**
  * Functions
@@ -15,38 +8,12 @@ sgMail.setApiKey(
 module.exports.create = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
-  const msg = {
-    to: "alevandro1602@gmail.com", // Change to your recipient
-    from: "hairulanam21@gmail.com", // Change to your verified sender
-    subject: "Sending with SendGrid is Fun",
-    text: "and easy to do anywhere, even with Node.js",
-    html: "<strong>and easy to do anywhere, even with Node.js</strong>",
-  };
-  sgMail
-    .send(msg)
-    .then(() => {
-      console.log("Email sent");
-    })
-    .catch((error) => {
-      console.error("sendgrid", error);
-    });
-
   connectToDatabase().then(() => {
-    const data = JSON.parse(event.body);
-    User.findOne({
-      email: data.email,
-    }).then((user) => {
-      console.log("user", user);
-      Notification.create({
-        userId: user._id,
-        notification: "Admin create ticket for you",
-      });
-    });
-    Ticket.create(data)
-      .then((ticket) =>
+    Notification.create(JSON.parse(event.body))
+      .then((notification) =>
         callback(null, {
           statusCode: 200,
-          body: JSON.stringify(ticket),
+          body: JSON.stringify(notification),
         })
       )
       .catch((err) => {
@@ -54,9 +21,33 @@ module.exports.create = (event, context, callback) => {
         return callback(null, {
           statusCode: err.statusCode || 500,
           headers: { "Content-Type": "text/plain" },
-          body: "Could not create the ticket.",
+          body: "Could not create the notification.",
         });
       });
+  });
+};
+
+module.exports.getByUserId = (event, context, callback) => {
+  context.callbackWaitsForEmptyEventLoop = false;
+
+  const userId = event.pathParameters.userId;
+  connectToDatabase().then(() => {
+    Notification.find({
+      userId,
+    })
+      .then((notifications) =>
+        callback(null, {
+          statusCode: 200,
+          body: JSON.stringify(notifications),
+        })
+      )
+      .catch((err) =>
+        callback(null, {
+          statusCode: err.statusCode || 500,
+          headers: { "Content-Type": "text/plain" },
+          body: "Could not fetch the notifications.",
+        })
+      );
   });
 };
 
@@ -178,27 +169,3 @@ module.exports.delete = (event, context, callback) => {
       );
   });
 };
-
-/**
- * Helpers
- */
-
-// function getTables() {
-//   return User.aggregate([
-// {$skip : 5},
-// {$limit :20},
-// {$sort: {
-//   name: 1,
-//   email: 1
-//         }
-// },
-// {$project: {
-//   name: 1,
-//   email: 1,
-//   username: 1
-//            }
-// },
-// {}
-//     // {$match : {"telegramPIN": "Jnzoeb4"}}
-// ])
-// }

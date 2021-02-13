@@ -26,7 +26,7 @@
         :key="item"
       >
         <v-card flat color="Amber">
-          <v-card-text color="grey">{{ text }}</v-card-text>
+          <v-card-text>{{ text }}</v-card-text>
         </v-card>
       </v-tab-item>
     </v-tabs-items>

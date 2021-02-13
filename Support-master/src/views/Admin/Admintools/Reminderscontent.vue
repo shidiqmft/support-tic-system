@@ -6,41 +6,41 @@
       color="primary"
       dark
     >
-      <v-toolbar-title>How To Operated Administrator</v-toolbar-title>
+      <v-toolbar-title>Admin Profile</v-toolbar-title>
     </v-toolbar>
     <v-tabs vertical>
       <v-tab>
         <v-icon left>
           mdi-account
         </v-icon>
-        Admin Account
-      </v-tab>
-      <v-tab>
-        <v-icon left>
-          mdi-ticket-percent
-        </v-icon>
-        Manage Ticket
+        Option 1
       </v-tab>
       <v-tab>
         <v-icon left>
           mdi-lock
         </v-icon>
-        Admin Rules
+        Option 2
+      </v-tab>
+      <v-tab>
+        <v-icon left>
+          mdi-access-point
+        </v-icon>
+        Option 3
       </v-tab>
 
       <v-tab-item>
         <v-card flat>
           <v-card-text>
             <p>
-              Administrator had a several jobdesk, for example Track, compile, and analyze system usage data.
+              Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam feugiat lorem non metus. Sed a libero.
             </p>
 
             <p>
-              Once you become admin you must Set up or maintain monitoring on web servers to make web capable to use by user.
+              Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Aliquam lobortis. Aliquam lobortis. Suspendisse non nisl sit amet velit hendrerit rutrum.
             </p>
 
             <p class="mb-0">
-              You should manage and organized ticketing system to make user more helpfull to use system
+              Phasellus dolor. Fusce neque. Fusce fermentum odio nec arcu. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Phasellus blandit leo ut odio.
             </p>
           </v-card-text>
         </v-card>
@@ -49,23 +49,23 @@
         <v-card flat>
           <v-card-text>
             <p>
-              To operated and managed ticket admin have a few privilaged
+              Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.
             </p>
 
             <p>
-              Admin can monitoring all tickets that every user input, it means admin managed to look how much every ticket that been input tp application.
+              Suspendisse feugiat. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In hac habitasse platea dictumst. Fusce ac felis sit amet ligula pharetra condimentum.
             </p>
 
             <p>
-              Account registered counted on how much every user registered to created account profile, same like Registered admin also can see how much user login to the system. 
+              Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Nam commodo suscipit quam. In consectetuer turpis ut velit. Sed cursus turpis vitae tortor. Aliquam eu nunc.
             </p>
 
             <p>
-              Admin also have a Features to managed and operated ticked. first its edited features, like user admin can edited every ticked that every user inputed. Admin also can deleted ticket that every user inputed.
+              Etiam ut purus mattis mauris sodales aliquam. Ut varius tincidunt libero. Aenean viverra rhoncus pede. Duis leo. Fusce fermentum odio nec arcu.
             </p>
 
             <p class="mb-0">
-               Only admin who can see every ticket has been recently deleted and managed by them, admin also can see how much ticket has been deleted
+              Donec venenatis vulputate lorem. Aenean viverra rhoncus pede. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce commodo aliquam arcu. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi.
             </p>
           </v-card-text>
         </v-card>
@@ -74,11 +74,11 @@
         <v-card flat>
           <v-card-text>
             <p>
-             System Administrator Job Responsibilities: Maintains web environment by identifying system requirements, installing upgrades and monitoring system performance. Establishes web system specifications by analyzing access, information and security requirements
+              Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
             </p>
 
             <p class="mb-0">
-              Although sometimes called upon to create websites, the main responsibility of administrators is to maintain, back up and update existing websites for organizations. As a website administrator you would be responsible for making sure the site's user interface is easy to understand and efficient.
+              Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.
             </p>
           </v-card-text>
         </v-card>

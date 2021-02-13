@@ -8,6 +8,15 @@
       </v-card-title>
       <v-card-text>
         <v-form ref="form" v-model="valid" lazy-validation solo>
+          <!--    <v-text-field
+          v-model="name"
+          :counter="15"
+          :rules="nameRules"
+          prepend-icon="mdi-account-cicle"
+          hint="At least 5 characters"
+          label="Name"
+          required
+          /> -->
           <v-text-field
             v-model="email"
             :rules="emailRules"
@@ -36,15 +45,14 @@
           :enabled="!valid"
           color="info"
           class="mr-4"
-          :loading="loading"
           @click="login((validate = true))"
         >
           Login
         </v-btn>
-
+        <v-btn color="success" to="register">Register</v-btn>
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color=" Success " to="logins" v-bind="attrs" v-on="on"
+            <v-btn color=" Success" to="logins" v-bind="attrs" v-on="on"
               >Admin</v-btn
             >
           </template>
@@ -73,10 +81,14 @@ export default {
     vertical: true,
     passwordd: false,
     valid: true,
-    loading: false,
     // name: '',
     email: "",
     password: "",
+    // nameRules: [
+    // v => !!v || 'Name is required',
+    // v => (v && v.length <= 15) || 'Name must be less than 15 characters',
+    // v => v.length >= 5 || 'Min 5 characters'
+    //   ],
     emailRules: [
       (v) => !!v || "Email is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
@@ -87,24 +99,22 @@ export default {
     },
   }),
   methods: {
-       login() {
+    login() {
       const base = this;
-      this.loading = true;
-      setTimeout(()=>{
-        this.loading=!true
-      },800)
       let request = {
         email: this.email,
         password: this.password,
       };
       loginAsUser(request)
         .then((response) => {
+          console.log(response.data);
           if (response.status == 200 && response.data.token) {
             setCookie("token_user", response.data.token);
             this.$router.push({
               name: "home",
             });
             localStorage.setItem("email", this.email);
+            localStorage.setItem("userId", response.data.user._id);
           } else {
             console.error("nggak ada token");
           }

@@ -14,18 +14,11 @@
           >
         </v-card>
       </v-col>
-      <v-data-table :headers="headers" :items="items" :search="search" class="elevation-1">
+      <v-data-table :headers="headers" :items="items" class="elevation-1">
         <template v-slot:top>
           <v-toolbar flat dark>
             <v-toolbar-title>View Ticket</v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
-                  <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
             <v-spacer></v-spacer>
             <v-dialog v-model="dialog" max-width="500px">
               <template v-slot:activator="{ on }" v-if="buttons">
@@ -33,7 +26,6 @@
                   >Add New Ticket</v-btn
                 >
               </template>
-              
               <v-card>
                 <v-card-title>
                   <span class="headline">{{ formTitle }}</span>
@@ -46,19 +38,26 @@
                           autofocus
                           color="error"
                           v-model="editedItem.code"
-                          label="Create Ticket"
+                          label="Code"
                           required
-                          disabled
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="12">
-                        <v-text-field
+                        <v-select
+                          autofocus
+                          color="error"
+                          v-model="editedItem.name"
+                          :items="users"
+                          label="name"
+                          required
+                        />
+                        <!-- <v-text-field
                           autofocus
                           color="error"
                           v-model="editedItem.name"
                           label="Name"
                           required
-                        ></v-text-field>
+                        ></v-text-field> -->
                       </v-col>
                       <v-col cols="12" sm="12">
                         <v-text-field
@@ -154,11 +153,21 @@
         </template>
       </v-data-table>
     </v-container>
+
+    <v-snackbar v-model="snackbar" :timeout="timeout">
+      {{ snackbarText }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
 <script>
-import { getTickets, updateTicket, postTicket } from "@api/user.js";
+import { getTickets, updateTicket, postTicket, getUsers } from "@api/user.js";
 import utils from "./../../../helpers/utils";
 export default {
   name: "Tablecreate",
@@ -171,7 +180,10 @@ export default {
     },
   },
   data: () => ({
-    search: "",
+    snackbarText: "",
+    snackbar: false,
+    timeout: 2000,
+    users: [],
     dialog: false,
     editedIndex: -1,
     editedItem: {
@@ -208,6 +220,24 @@ export default {
       { text: "date", value: "date" },
     ],
     items: [
+      {
+        value: "false",
+        code: 23,
+        name: "dsvdf",
+        description: "Le Manns",
+        division: "Low",
+        priority: "Backend",
+        date: "21-10-2020",
+      },
+      {
+        value: "false",
+        code: 1,
+        name: "ddd",
+        description: "Le Manns",
+        division: "High",
+        priority: "Frontend",
+        date: "23-11-2020",
+      },
     ],
   }),
   computed: {
@@ -221,7 +251,7 @@ export default {
       return this.$store.getters.getItems;
     },
     formTitle() {
-      return this.editedIndex === -1 ? "" : "Edit Record";
+      return this.editedIndex === -1 ? "New Record" : "Edit Record";
     },
   },
   watch: {
@@ -248,15 +278,18 @@ export default {
         updateTicket(this.form._id, request).then((res) => {
           console.log(res);
           this.getData();
+          this.snackbarText = "Ticket has been updated";
+          this.snackbar = true;
         });
       } else {
         postTicket(request).then((res) => {
           console.log(res);
           this.getData();
+          this.snackbarText = "Ticket has been created";
+          this.snackbar = true;
         });
       }
     },
-
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
@@ -287,6 +320,8 @@ export default {
         this.items = [];
         updateTicket(this.editedItem._id, data).then(() => {
           this.getData();
+          this.snackbarText = "Ticket has been updated";
+          this.snackbar = true;
         });
         // alert(1);
         // console.log(this.editedItem);
@@ -310,6 +345,8 @@ export default {
         }).then((res) => {
           console.log(res);
           this.getData();
+          this.snackbarText = "Ticket has been created";
+          this.snackbar = true;
         });
       }
       this.close();
@@ -332,6 +369,14 @@ export default {
     if (this.buttons) {
       this.headers.push({ text: "Actions", value: "action", sortable: false });
     }
+    getUsers()
+      .then((response) => {
+        // console.log(response.data);
+        this.users = response.data.map((user) => user.name);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   mutations: {
     newItem(state, payload) {

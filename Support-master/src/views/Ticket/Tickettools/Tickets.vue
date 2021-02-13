@@ -2,12 +2,12 @@
   <v-data-table
     :headers="headers"
     :items="tickets"
-    sort-by="date"
+    sort-by="name"
     class="elevation-1"
   >
     <template v-slot:top>
-      <v-toolbar flat color="grey darken-2">
-        <v-toolbar-title class="font-weight-bold white--text" >My Tickets</v-toolbar-title>
+      <v-toolbar flat color="white">
+        <v-toolbar-title>My Tickets</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="800px">
@@ -15,7 +15,7 @@
             <v-btn color="teal" dark class="mb-2" v-on="on">New Data</v-btn>
           </template>
 
-          <v-card color="blue-grey darken-4" dark>
+          <v-card color="blue-grey darken-1" dark :loading="isUpdating">
             <template v-slot:progress>
               <v-progress-linear
                 absolute
@@ -25,11 +25,33 @@
               ></v-progress-linear>
             </template>
 
-            <v-img height="200" src="@/views/Image/ayo1 (2).jpeg">
+            <v-img height="200" src="@/views/Image/view.jpg">
               <v-row>
+                <v-col class="text-right" cols="12">
+                  <v-menu bottom left transition="slide-y-transition">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn icon v-bind="attrs" v-on="on">
+                        <v-icon>mdi-dots-vertical</v-icon>
+                      </v-btn>
+                    </template>
+                    <v-list>
+                      <v-list-item @click="isUpdating = true">
+                        <v-list-item-action>
+                          <v-icon>mdi-settings</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                          <v-list-item-title>Update</v-list-item-title>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
+                </v-col>
                 <v-row class="pa-4" align="center" justify="center">
                   <v-col class="text-center">
-                    <h1 class="font-weight-bold display-4 orange darken-4--text">New Ticket</h1>
+                    <h3 class="headline">New Ticket</h3>
+                    <span class="grey--text text--lighten-1">
+                      Create New Ticket</span
+                    >
                   </v-col>
                 </v-row>
               </v-row>
@@ -42,24 +64,107 @@
                     <v-text-field
                       ref="Number"
                       v-model="form.number"
+                      :disabled="isUpdating"
                       :rules="numberRules"
-                      disabled
+                      filled
                       required
                       color="blue-grey lighten-2"
-                      label="Create New Ticket"
+                      label="Number"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="6">
-                    <v-text-field
+                    <v-select
+                      color="error"
+                      v-model="form.name"
+                      :items="users"
+                      label="name"
+                      required
+                    />
+                    <!-- <v-text-field
                       ref="Name"
                       v-model="form.name"
+                      :disabled="isUpdating"
                       :rules="nameRules"
                       filled
                       required
                       color="blue-grey lighten-2"
                       label="Name"
-                    ></v-text-field>
+                    ></v-text-field> -->
                   </v-col>
+                  <v-toolbar dense>
+                    <v-overflow-btn
+                      :items="dropdown_font"
+                      label="Select font"
+                      hide-details
+                      class="pa-0"
+                    />
+
+                    <template v-if="$vuetify.breakpoint.mdAndUp">
+                      <v-divider vertical></v-divider>
+
+                      <v-overflow-btn
+                        :items="dropdown_edit"
+                        editable
+                        label="Select size"
+                        hide-details
+                        class="pa-0"
+                        overflow
+                      />
+
+                      <v-divider vertical></v-divider>
+
+                      <v-spacer></v-spacer>
+
+                      <v-btn-toggle
+                        v-model="toggle_multiple"
+                        color="primary"
+                        dense
+                        group
+                        multiple
+                      >
+                        <v-btn :value="1" text>
+                          <v-icon>mdi-format-bold</v-icon>
+                        </v-btn>
+
+                        <v-btn :value="2" text>
+                          <v-icon>mdi-format-italic</v-icon>
+                        </v-btn>
+
+                        <v-btn :value="3" text>
+                          <v-icon>mdi-format-underline</v-icon>
+                        </v-btn>
+
+                        <v-btn :value="4" text>
+                          <v-icon>mdi-format-color-fill</v-icon>
+                        </v-btn>
+                      </v-btn-toggle>
+
+                      <div class="mx-4"></div>
+
+                      <v-btn-toggle
+                        v-model="toggle_exclusive"
+                        color="primary"
+                        dense
+                        group
+                      >
+                        <v-btn :value="1" text>
+                          <v-icon>mdi-format-align-left</v-icon>
+                        </v-btn>
+
+                        <v-btn :value="2" text>
+                          <v-icon>mdi-format-align-center</v-icon>
+                        </v-btn>
+
+                        <v-btn :value="3" text>
+                          <v-icon>mdi-format-align-right</v-icon>
+                        </v-btn>
+
+                        <v-btn :value="4" text>
+                          <v-icon>mdi-format-align-justify</v-icon>
+                        </v-btn>
+                      </v-btn-toggle>
+                    </template>
+                  </v-toolbar>
 
                   <v-col cols="12">
                     <v-textarea
@@ -69,6 +174,7 @@
                       clear-icon="mdi-close-circle"
                       label="Description"
                       required
+                      :disabled="isUpdating"
                       :rules="descriptionRules"
                       filled
                       color="blue-grey lighten-2"
@@ -84,9 +190,58 @@
                       :items="prioritychoice2"
                       v-model="priority"
                       label="Priority"
+                    />
+                    <!-- <v-autocomplete
+                      ref="Priority"
+                      v-model="prioritychoice"
+                      :disabled="isUpdating"
+                      :items="prioritychoice"
+                      :rules="priorityRules"
                       required
                       filled
-                    />
+                      chips
+                      color="blue-grey lighten-2"
+                      label="Priority"
+                      item-text="Choice"
+                      item-value="Choice"
+                    >
+                      <template v-slot:selection="data">
+                        <v-chip
+                          v-bind="data.attrs"
+                          :input-value="data.selected"
+                          close
+                          @click="data.select"
+                          @click:close="remove(data.item)"
+                        >
+                          <v-avatar left>
+                            <v-img :src="data.item.avatar"></v-img>
+                          </v-avatar>
+                          {{ data.item.choice }}
+                        </v-chip>
+                      </template>
+
+                      <template v-slot:item="data">
+                        <template v-if="typeof data.item !== 'object'">
+                          <v-list-item-content
+                            v-text="data.item"
+                          ></v-list-item-content>
+                        </template>
+                        <template v-else>
+                          <v-list-item-avatar>
+                            <img :src="data.item.avatar" />
+                          </v-list-item-avatar>
+
+                          <v-list-item-content>
+                            <v-list-item-title
+                              v-html="data.item.choice"
+                            ></v-list-item-title>
+                            <v-list-item-subtitle
+                              v-html="data.item.group"
+                            ></v-list-item-subtitle>
+                          </v-list-item-content>
+                        </template>
+                      </template>
+                    </v-autocomplete> -->
                   </v-col>
 
                   <v-col cols="12" md="6">
@@ -94,9 +249,58 @@
                       :items="divisionchoice2"
                       v-model="division"
                       label="Division"
+                    />
+                    <!-- <v-autocomplete
+                      ref="Divison"
+                      v-model="divisionchoice"
+                      :disabled="isUpdating"
+                      :items="divisionchoice"
+                      :rules="DivisionRules"
                       required
                       filled
-                    />
+                      chips
+                      color="blue-grey lighten-2"
+                      label="Division"
+                      item-text="Choice"
+                      item-value="Choice"
+                    >
+                      <template v-slot:selection="data">
+                        <v-chip
+                          v-bind="data.attrs"
+                          :input-value="data.selected"
+                          close
+                          @click="data.select"
+                          @click:close="remove(data.item)"
+                        >
+                          <v-avatar left>
+                            <v-img :src="data.item.avatar"></v-img>
+                          </v-avatar>
+                          {{ data.item.choice }}
+                        </v-chip>
+                      </template>
+
+                      <template v-slot:item="data">
+                        <template v-if="typeof data.item !== 'object'">
+                          <v-list-item-content
+                            v-text="data.item"
+                          ></v-list-item-content>
+                        </template>
+                        <template v-else>
+                          <v-list-item-avatar>
+                            <img :src="data.item.avatar" />
+                          </v-list-item-avatar>
+
+                          <v-list-item-content>
+                            <v-list-item-title
+                              v-html="data.item.choice"
+                            ></v-list-item-title>
+                            <v-list-item-subtitle
+                              v-html="data.item.group"
+                            ></v-list-item-subtitle>
+                          </v-list-item-content>
+                        </template>
+                      </template>
+                    </v-autocomplete> -->
                   </v-col>
 
                   <v-col cols="12" sm="6" md="4">
@@ -188,11 +392,20 @@
 
             <v-divider></v-divider>
             <v-card-actions>
+              <v-switch
+                v-model="autoUpdate"
+                :disabled="isUpdating"
+                class="mt-0"
+                color="green lighten-2"
+                hide-details
+                label="Auto Update"
+              ></v-switch>
               <v-spacer></v-spacer>
               <v-btn
+                :disabled="!autoUpdate"
+                :loading="isUpdating"
                 color="blue-grey darken-3"
                 depressed
-                :loading="loading"
                 @click="saveNewTicket((save = true))"
               >
                 <v-icon left>mdi-update</v-icon>
@@ -203,17 +416,22 @@
         </v-dialog>
       </v-toolbar>
     </template>
-    
     <template v-slot:item.action="{ item }">
       <v-icon small class="mr-2" @click="editItem(item)">
         mdi-content-save-edit-outline
       </v-icon>
+      <v-icon small @click="deleteItem(item)">
+        mdi-delete
+      </v-icon>
+    </template>
+    <template v-slot:no-data>
+      <v-btn color="primary" @click="initialize">Reset</v-btn>
     </template>
 
     <v-dialog v-model="dialog" max-width="500px">
-      <template v-slot:activator="{ on }" v-if="buttons">
+      <!-- <template v-slot:activator="{ on }" v-if="buttons">
         <v-btn color="error" dark class="mb-2" v-on="on">Add New Ticket</v-btn>
-      </template>
+      </template> -->
       <v-card>
         <v-card-title>
           <span class="headline">{{ formTitle }}</span>
@@ -315,15 +533,53 @@
   </v-data-table>
 </template>
 <script>
-import { getTickets, postTicket, updateTicket } from "@api/user.js";
+import { getTickets, postTicket, updateTicket, getUsers } from "@api/user.js";
 import utils from "../../.../../../helpers/utils";
 export default {
   name: "Tickets",
   data() {
+    const srcs = {
+      1: "@/views/Image/profile.png",
+      2: "@/views/Image/kuning.jpg",
+      3: "@/views/Image/orange.png",
+      4: "@/views/Image/biru.png",
+    };
     return {
-      loading: false,
+      snackbarText: "",
+      snackbar: false,
+      timeout: 2000,
+      users: [],
+      agreement: false,
+      autoUpdate: false,
+      isUpdating: false,
+      prioritychoice: [
+        { header: "Priority" },
+        { choice: "High", group: "Priority", avatar: srcs[1] },
+        { choice: "Low", group: "Priority", avatar: srcs[2] },
+      ],
       prioritychoice2: ["High", "Low"],
+      divisionchoice: [
+        { header: "Division" },
+        { choice: "Frontend", group: "Division", avatar: srcs[3] },
+        { choice: "Backend", group: "Division", avatar: srcs[4] },
+      ],
       divisionchoice2: ["Frontend", "Backend"],
+      dropdown_font: [
+        { text: "Arial" },
+        { text: "Calibri" },
+        { text: "Courier" },
+        { text: "Verdana" },
+      ],
+      dropdown_edit: [
+        { text: "100%" },
+        { text: "75%" },
+        { text: "50%" },
+        { text: "25%" },
+        { text: "0%" },
+      ],
+      toggle_exclusive: 2,
+      toggle_multiple: [1, 2, 3],
+
       form: {
         number: "",
         name: "",
@@ -339,7 +595,7 @@ export default {
       nameRules: [(v) => !!v || "Name is required"],
       descriptionRules: [
         (v) => !!v || "Description is required",
-        (v) => v.length <= 100 || "Max 100 characters",
+        (v) => v.length <= 30 || "Max 30 characters",
       ],
       priorityRules: [(v) => !!v || "Priority is required"],
       divisionRules: [(v) => !!v || "Divison is required"],
@@ -392,19 +648,28 @@ export default {
     dialog(val) {
       val || this.close();
     },
+    isUpdating(val) {
+      if (val) {
+        setTimeout(() => (this.isUpdating = false), 3000);
+      }
+    },
   },
 
   created() {
     this.initialize();
     this.getData();
+    getUsers()
+      .then((response) => {
+        // console.log(response.data);
+        this.users = response.data.map((user) => user.name);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 
   methods: {
     saveNewTicket() {
-      this.loading = true;
-      setTimeout(()=>{
-      this.loading = !true
-      },2000)
       let request = {
         number: this.form.number,
         name: this.form.name,
@@ -414,8 +679,6 @@ export default {
         date: this.form.date,
         email: localStorage.getItem("email"),
       };
-      this.loading = false;
-      this.dialog = false;
       // console.log(request);
       // return;
 
@@ -423,15 +686,16 @@ export default {
       if (this.editedIndex > -1) {
         updateTicket(this.form._id, request).then((res) => {
           console.log(res);
+          this.$emit("snack", "Ticket has been updated");
           this.getData();
         });
       } else {
         postTicket(request).then((res) => {
           console.log(res);
+          this.$emit("snack", "Ticket has been created");
           this.getData();
         });
       }
-      this.close()
     },
     remove(item) {
       const index = this.pilih.indexOf(item.choice);
@@ -473,12 +737,24 @@ export default {
       this.dialog = true;
     },
 
+    deleteItem(item) {
+      const index = this.tickets.indexOf(item);
+      confirm("Are you sure you want to delete this item?") &&
+        this.tickets.splice(index, 1);
+      // this.$store.commit("deleteItem", index);
+      updateTicket(item._id, { is_deleted: true }).then(() => {
+        this.getData();
+      });
+
+      // Todo: Make this delete item from store
+    },
+
     close() {
       this.dialog = false;
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
-      }, 600);
+      }, 300);
     },
 
     save() {
