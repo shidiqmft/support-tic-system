@@ -11,12 +11,12 @@
       <v-list dense>
         <template v-for="item in items">
           <v-row v-if="item.heading" :key="item.heading" align="center">
-            <v-col cols="6">
+            <v-col cols="">
               <v-subheader v-if="item.heading">
                 {{ item.heading }}
               </v-subheader>
             </v-col>
-            <v-col cols="6" class="text-center">
+            <v-col cols="" class="text-center">
               <a href="#!" class="body-2 black--text">EDIT</a>
             </v-col>
           </v-row>
@@ -83,15 +83,6 @@
           <span class="hidden-sm-and-down">Support Ticketing System</span>
         </div>
       </v-toolbar-title>
-      <v-text-field
-        flat
-        solo-inverted
-        hide-details
-        prepend-inner-icon="mdi-magnify"
-        v-model="search"
-        class="hidden-sm-and-down"
-        color="amber"
-      />
       <v-spacer />
       <v-btn icon color="amber" href="Home">
         <v-icon>mdi-apps</v-icon>
@@ -109,7 +100,7 @@
               <v-btn icon large color="primary" dark v-on="on">
                 <v-badge v-model="show2" color="cyan" left>
                   <template v-slot:badge>
-                    <span>6</span>
+                    <span></span>
                   </template>
                   <v-btn icon color="grey">
                     <v-icon @mouseover="show2 = true" @mouseout="show2 = false"
@@ -226,36 +217,12 @@
               </v-list>
 
               <v-divider></v-divider>
-
-              <!--         <v-list>
-          <v-list-item>
-            <v-list-item-action>
-              <v-switch v-model="message" color="purple"></v-switch>
-            </v-list-item-action>
-            <v-list-item-title>Enable messages</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-action>
-              <v-switch v-model="hints" color="purple"></v-switch>
-            </v-list-item-action>
-            <v-list-item-title>Enable hints</v-list-item-title>
-          </v-list-item>
-        </v-list> -->
-
-              <!-- <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn text @click="menu = false">Cancel</v-btn>
-          <v-btn color="primary" text @click="menu = false">Save</v-btn>
-        </v-card-actions> -->
             </v-card>
           </v-menu>
         </div>
       </template>
     </v-app-bar>
     <router-view></router-view>
-    <Contact></Contact>
     <v-footer color="grey lighten-1" padless>
       <v-col class="text-center" cols="12">
         {{ new Date().getFullYear() }} —
@@ -267,13 +234,11 @@
 <script>
 import { getCookie, eraseCookie } from "@/helpers/cookie.js";
 import { getByUserId } from "@/api/notification";
-import Contact from "@/views/Usertools/Contact.vue";
 export default {
   name: "Navigation",
   props: {
     source: String,
   },
-  components: { Contact },
   data: () => ({
     notifications: [],
     dialoglogout: false,
@@ -287,43 +252,22 @@ export default {
     hints: true,
     search: "",
     items: [
-      { icon: "mdi-home-circle", text: "Home", name: "home" },
-      // { icon: 'mdi-account-circle', text: 'Profile', name: 'Profile' },
-      // { icon: 'mdi-book-information-variant', text: 'Article' },
-      {
-        text: "Tickets",
-        icon: "mdi-chevron-up",
-        "icon-alt": "mdi-ticket",
-        model: false,
-        children: [
-          { icon: "mdi-ticket-account", text: "My Ticket", name: "MyTicket" },
-          {
-            icon: "mdi-ticket-confirmation",
-            text: "View Ticket",
-            name: "AllTicket",
-          },
-        ],
-      },
-      // {
-      //   icon: 'mdi-chevron-up',
-      //   'icon-alt': 'mdi-chevron-down',
-      //   text: 'More',
-      //   model: false,
-      //   children: [
-      //     { text: 'Import' },
-      //     { text: 'Export' },
-      //     { text: 'Print' },
-      //     { text: 'Undo changes' },
-      //     { text: 'Other contacts' },
-      //   ],
-      // },
-      // { icon: 'mdi-history', text: 'History' },
-      { icon: "mdi-message", text: "About Us", name: "Article" },
-      { icon: "mdi-cog", text: "Settings", name: "Settings" },
-      { icon: "mdi-map-marker", text: "Maps", name: "Maps" },
-      { icon: "mdi-help", text: "Help" },
-      // { icon: 'mdi-cellphone-link', text: 'Download' },
-      { icon: "mdi-keyboard", text: "Go to the Admin", name: "home" },
+   { icon: 'mdi-home-circle', text: 'Home', name: 'home'},
+        // { icon: 'mdi-account-circle', text: 'Profile', name: 'Profile' },
+        // { icon: 'mdi-book-information-variant', text: 'Article' },
+        {
+          text: 'Tickets',
+          icon: 'mdi-chevron-up',
+          'icon-alt': 'mdi-ticket',
+          model: false,
+          children: [
+            { icon: 'mdi-ticket-account', text: 'My Ticket', name: 'MyTicket' },
+            { icon: 'mdi-ticket-confirmation', text: 'View Ticket', name: 'AllTicket' },
+          ],
+        },
+        { icon: 'mdi-message', text: 'About Us', name: 'Article' },
+        // { icon: 'mdi-cog', text: 'Settings', name: 'Settings' },
+        // { icon: 'mdi-map-marker', text: 'Maps', name: 'Maps' },
     ],
   }),
   methods: {

@@ -59,11 +59,11 @@ functions:
           cors: true
           authorizer: verify-token
 
-  get1:
-    handler: admin/AdminHandler.gets
+  getAdmins:
+    handler: admin/AdminHandler.getAdmins
     events:
       - http:
-          path: admin
+          path: admins
           method: get
           cors: true
 

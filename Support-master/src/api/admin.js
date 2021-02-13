@@ -23,3 +23,14 @@ export async function loginAsAdmin(request={}) {
         data: request
     }}); 
 }
+
+export async function postAsUser(request = {}) {
+    return await axios({
+      ...requestBody,
+      ...{
+        method: "post",
+        url: "/register",
+        data: request,
+      },
+    });
+  }

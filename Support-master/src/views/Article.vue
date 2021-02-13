@@ -7,10 +7,10 @@
             dark
           >
             <v-card-title class="headline">
-              About Us
+              About Application
             </v-card-title>
 
-            <v-card-subtitle>Learn to know more about us</v-card-subtitle>
+            <v-card-subtitle>Learn to know more about this application</v-card-subtitle>
           </v-card>
         </v-col>
 
@@ -73,7 +73,7 @@
       <div>
         <span class="headline">Support Ticketing System</span>
         <div class="grey--text font-weight-light">
-          Ticketing System
+          Provide user with a fully responsive and easier to create ticket.
         </div>
       </div>
       <v-spacer></v-spacer>
@@ -119,7 +119,7 @@
               <v-list-item-action>
                 <v-icon>mdi-email</v-icon>
               </v-list-item-action>
-              <v-card-title>Email</v-card-title>
+              <v-card-title>support.ticket.system@gmail.com</v-card-title>
             </v-list-item>
           </v-list>
           <v-text-field
@@ -127,7 +127,7 @@
             :label="copied ? 'Link copied' : 'Click to copy link'"
             class="pa-4"
             readonly
-            value="https://g.co/kgs/nkrK43"
+            value="support.ticket.system@gmail.com"
             @click="copy"
           ></v-text-field>
         </v-card>
@@ -152,7 +152,7 @@
       </v-rating>
     </v-card-actions>
     <div class="pa-4 pt-0 caption">
-      <em>Portions of the materials used are trademarks and/or copyrighted works of Epic Games, Inc. All rights reserved by Epic. This material is not official and is not endorsed by Epic.</em>
+      <em>Support Ticketing System is an open source ticket system for giving support to other developer. It provides you with a better management of your users inquiries. They send you tickets through Support Ticketing System and you can handle them as you wish. The software has tools to manage the ticketcustom responses. It also let you to write description for common issues or error. All of this for make your project easier.</em>
     </div>
   </v-card>
 </v-row>

@@ -7,11 +7,11 @@ const bcrypt = require('bcryptjs-then');
  *  Function
  */
 
- module.exports.me = (event, context) => {
+ module.exports.me1 = (event, context) => {
    context.callbackWaitsForEmptyEventLoop = false;
    return connectToDatabase()
    .then(() => 
-     me(event.requestContext.authorizer.principalId)
+     me1(event.requestContext.authorizer.principalId)
    )
    .then(session => ({
      statusCode: 200,
@@ -61,7 +61,7 @@ const bcrypt = require('bcryptjs-then');
   * Helpers
   */
 
-function me(adminId) {
+function me1(adminId) {
   return Admin.findById(adminId, { password: 0 })
   .then(admin =>
     !admin

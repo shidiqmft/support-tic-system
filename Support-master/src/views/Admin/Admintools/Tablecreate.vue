@@ -14,11 +14,18 @@
           >
         </v-card>
       </v-col>
-      <v-data-table :headers="headers" :items="items" class="elevation-1">
+      <v-data-table :headers="headers" :items="items" :search="search" class="elevation-1">
         <template v-slot:top>
           <v-toolbar flat dark>
             <v-toolbar-title>View Ticket</v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
+            <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
             <v-spacer></v-spacer>
             <v-dialog v-model="dialog" max-width="500px">
               <template v-slot:activator="{ on }" v-if="buttons">
@@ -38,17 +45,19 @@
                           autofocus
                           color="error"
                           v-model="editedItem.code"
-                          label="Code"
+                          label="Create Ticket"
                           required
+                          disabled
                         ></v-text-field>
                       </v-col>
+
                       <v-col cols="12" sm="12">
                         <v-select
                           autofocus
                           color="error"
                           v-model="editedItem.name"
                           :items="users"
-                          label="name"
+                          label="Name"
                           required
                         />
                         <!-- <v-text-field
@@ -74,7 +83,7 @@
                           color="error"
                           v-model="editedItem.division"
                           :items="division"
-                          label="division"
+                          label="Division"
                           required
                         ></v-select>
                       </v-col>
@@ -84,7 +93,7 @@
                           color="error"
                           v-model="editedItem.priority"
                           :items="priority"
-                          label="priority"
+                          label="Priority"
                           required
                         ></v-select>
                       </v-col>
@@ -180,6 +189,7 @@ export default {
     },
   },
   data: () => ({
+    search: "",
     snackbarText: "",
     snackbar: false,
     timeout: 2000,
@@ -207,7 +217,7 @@ export default {
     division: ["Frontend", "Backend"],
     headers: [
       {
-        text: "Code",
+        text: "No",
         align: "left",
         sortable: true,
         value: "code",
@@ -220,24 +230,6 @@ export default {
       { text: "date", value: "date" },
     ],
     items: [
-      {
-        value: "false",
-        code: 23,
-        name: "dsvdf",
-        description: "Le Manns",
-        division: "Low",
-        priority: "Backend",
-        date: "21-10-2020",
-      },
-      {
-        value: "false",
-        code: 1,
-        name: "ddd",
-        description: "Le Manns",
-        division: "High",
-        priority: "Frontend",
-        date: "23-11-2020",
-      },
     ],
   }),
   computed: {
@@ -251,7 +243,7 @@ export default {
       return this.$store.getters.getItems;
     },
     formTitle() {
-      return this.editedIndex === -1 ? "New Record" : "Edit Record";
+      return this.editedIndex === -1 ? "" : "Edit Record";
     },
   },
   watch: {

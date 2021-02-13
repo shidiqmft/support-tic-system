@@ -20,21 +20,6 @@ module.exports.getUsers = (event, context) => {
     }));
 };
 
-// module.exports.getTables = (event, context) => {
-//   context.callbackWaitsForEmptyEventLoop = false;
-//   return connectToDatabase()
-//     .then(getTables)
-//     .then(tables => ({
-//       statusCode: 200,
-//       body: JSON.stringify(tables)
-//     }))
-//     .catch(err => ({
-//       statusCode: err.statusCode || 500,
-//       headers: { 'Content-Type': 'text/plain' },
-//       body: JSON.stringify({ message: err.message })
-//     }));
-// };
-
 /**
  * Helpers
  */

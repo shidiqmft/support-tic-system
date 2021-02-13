@@ -26,6 +26,6 @@ module.exports.getAdmins = (event, context) => {
 
  function getAdmins() {
    return Admin.find({})
-   .then(admins)
+   .then(admins => admins)
    .catch(err => Promise.reject(new Error(err)));
  }

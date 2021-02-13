@@ -23,7 +23,7 @@ export default {
     return {
       search: "",
       headers: [
-        { text: "Number", value: "number" },
+        { text: "No", value: "number" },
         {
           text: "Name",
           align: "left",
