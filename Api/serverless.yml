@@ -35,7 +35,7 @@ functions:
           cors: true
 
   createNotifications:
-    handler: notifications/NotificationHandler.create
+    handler: notifications/NotificationHandler.createNotifications
     events:
       - http:
           path: notifications
@@ -43,7 +43,7 @@ functions:
           cors: true
 
   getNotificationsByUserId:
-    handler: notifications/NotificationHandler.getByUserId
+    handler: notifications/NotificationHandler.getNotificationsByUserId
     events:
       - http:
           path: notifications/get-by-user-id/{userId}

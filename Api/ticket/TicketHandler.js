@@ -3,7 +3,7 @@ const Ticket = require("./Ticket");
 const User = require("./../user/User");
 const Notification = require("./../notifications/Notification");
 const utils = require("./../utils");
-// const MailGen = require('mailgen')
+const MailGen = require('mailgen');
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(
   "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"
@@ -16,39 +16,39 @@ sgMail.setApiKey(
 module.exports.create = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
-//   const mailGenerator = new MailGen({
-//     theme: 'salted',
-//     product: {
-//       name: 'Support Ticketing System',
-//       link: 'http://localhost:3000/login',
-//       // logo: URL logo,
-//     },
-//   })
+  const mailGenerator = new MailGen({
+    theme: 'salted',
+    product: {
+      name: 'Support Ticketing System',
+      link: 'http://localhost:3000/login',
+      // logo: URL logo,
+    },
+  })
 
-// const email = {
-//   body: {
-//     name: 'Team',
-//     intro: '<strong>You Have a New Ticket!</strong>',
-//     action: {
-//       instructions: 'You Must Login to Your Account Support Ticketing System<p>Please click the button below to login your account</p>',
-//       button: {
-//         color: '#FFC300',
-//         text: 'Login Account',
-//         link: 'http://localhost:3000/login',
-//       },
-//     },
-//   },
-// }
+const email = {
+  body: {
+    name: 'Team',
+    intro: '<strong>You Have a New Ticket!</strong>',
+    action: {
+      instructions: 'You Must Login to Your Account Support Ticketing System<p>Please click the button below to login your account</p>',
+      button: {
+        color: '#FFC300',
+        text: 'Login Account',
+        link: 'http://localhost:3000/login',
+      },
+    },
+  },
+}
 
-// const emailTemplate = mailGenerator.generate(email)
-// require('fs').writeFileSync('preview.html', emailTemplate, 'utf8')
+const emailTemplate = mailGenerator.generate(email)
+require('fs').writeFileSync('preview.html', emailTemplate, 'utf8')
 
   const msg = {
-    to: "muhamad.28@students.amikom.ac.id", // Change to your recipient
-    from: "support.ticket.system@gmail.com", // Change to your verified sender
+    to: "shidiq.13@students.amikom.ac.id", // Change to your recipient
+    from: "suppport.ticket.system@gmail.com", // Change to your verified sender
     subject: "You Have a New Ticket!",
     text: "You Must Check Your Ticket Now",
-    html: "Hi, you've a new ticket to log <strong>SUPPORT TICKETING SYSTEM</strong> and see your work. Thanks:) <p>-Admin</p>",
+    html: emailTemplate ,
   };
   sgMail
     .send(msg)
