@@ -20,7 +20,7 @@ module.exports.create = (event, context, callback) => {
     theme: 'salted',
     product: {
       name: 'Support Ticketing System',
-      link: 'http://localhost:3000/login',
+      link: 'http://localhost:8080/login',
       // logo: URL logo,
     },
   })
@@ -34,7 +34,7 @@ const email = {
       button: {
         color: '#FFC300',
         text: 'Login Account',
-        link: 'http://localhost:3000/login',
+        link: 'http://localhost:8080/login',
       },
     },
   },

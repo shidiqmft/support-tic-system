@@ -27,7 +27,7 @@ module.exports.create = (event, context, callback) => {
   });
 };
 
-module.exports.getByUserId = (event, context, callback) => {
+module.exports.getNotificationsByUserId = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
   const userId = event.pathParameters.userId;
