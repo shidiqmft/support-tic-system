@@ -39,7 +39,7 @@ export default {
   },
   components: { Tickets, Header2 },
   data: () => ({
-    snackbar: true,
+    snackbar: false,
     snackbarText: "",
     timeout: 2000,
     // dialoglogout: false,

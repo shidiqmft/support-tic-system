@@ -98,9 +98,9 @@
           >
             <template v-slot:activator="{ on }">
               <v-btn icon large color="primary" dark v-on="on">
-                <v-badge v-model="show2" color="cyan" left>
+                <v-badge v-model="isNotif" color="cyan" right>
                   <template v-slot:badge>
-                    <span></span>
+                    <span>{{ notifications.length }}</span>
                   </template>
                   <v-btn icon color="grey">
                     <v-icon @mouseover="show2 = true" @mouseout="show2 = false"
@@ -112,10 +112,7 @@
             </template>
 
             <v-card>
-              <v-list-item
-                v-for="notification in notifications"
-                :key="notification._id"
-              >
+              <v-list-item>
                 <v-list-item-content>
                   <v-list-item-title>Notifications</v-list-item-title>
                 </v-list-item-content>
@@ -126,9 +123,11 @@
               >
                 <v-list-item-content>
                   <!-- <v-list-item-title>Two-line item</v-list-item-title> -->
-                  <v-list-item-subtitle>{{
-                    notification.notification
-                  }}</v-list-item-subtitle>
+                  <v-list-item-subtitle
+                    style="cursor:pointer;"
+                    @click="$router.push('/myticket')"
+                    >{{ notification.notification }}</v-list-item-subtitle
+                  >
                 </v-list-item-content>
               </v-list-item>
             </v-card>
@@ -252,24 +251,33 @@ export default {
     hints: true,
     search: "",
     items: [
-   { icon: 'mdi-home-circle', text: 'Home', name: 'home'},
-        // { icon: 'mdi-account-circle', text: 'Profile', name: 'Profile' },
-        // { icon: 'mdi-book-information-variant', text: 'Article' },
-        {
-          text: 'Tickets',
-          icon: 'mdi-chevron-up',
-          'icon-alt': 'mdi-ticket',
-          model: false,
-          children: [
-            { icon: 'mdi-ticket-account', text: 'My Ticket', name: 'MyTicket' },
-            { icon: 'mdi-ticket-confirmation', text: 'View Ticket', name: 'AllTicket' },
-          ],
-        },
-        { icon: 'mdi-message', text: 'About Us', name: 'Article' },
-        // { icon: 'mdi-cog', text: 'Settings', name: 'Settings' },
-        // { icon: 'mdi-map-marker', text: 'Maps', name: 'Maps' },
+      { icon: "mdi-home-circle", text: "Home", name: "home" },
+      // { icon: 'mdi-account-circle', text: 'Profile', name: 'Profile' },
+      // { icon: 'mdi-book-information-variant', text: 'Article' },
+      {
+        text: "Tickets",
+        icon: "mdi-chevron-up",
+        "icon-alt": "mdi-ticket",
+        model: false,
+        children: [
+          { icon: "mdi-ticket-account", text: "My Ticket", name: "MyTicket" },
+          {
+            icon: "mdi-ticket-confirmation",
+            text: "View Ticket",
+            name: "AllTicket",
+          },
+        ],
+      },
+      { icon: "mdi-message", text: "About Us", name: "Article" },
+      // { icon: 'mdi-cog', text: 'Settings', name: 'Settings' },
+      // { icon: 'mdi-map-marker', text: 'Maps', name: 'Maps' },
     ],
   }),
+  computed: {
+    isNotif() {
+      return this.notifications.length > 0;
+    },
+  },
   methods: {
     logout() {
       eraseCookie("token_user");
