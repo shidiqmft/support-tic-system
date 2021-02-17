@@ -112,7 +112,10 @@
             </template>
 
             <v-card>
-              <v-list-item>
+              <v-list-item
+                v-for="notification in notifications"
+                :key="notification._id"
+              >
                 <v-list-item-content>
                   <v-list-item-title>Notifications</v-list-item-title>
                 </v-list-item-content>
@@ -124,10 +127,9 @@
                 <v-list-item-content>
                   <!-- <v-list-item-title>Two-line item</v-list-item-title> -->
                   <v-list-item-subtitle
-                    style="cursor:pointer;"
-                    @click="$router.push('/myticket')"
-                    >{{ notification.notification }}</v-list-item-subtitle
-                  >
+                  style="cursor:pointer;"
+                  @click="$router.push('/myticket')"
+                  >{{ notification.notification }}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
             </v-card>
